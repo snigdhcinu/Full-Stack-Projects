@@ -1,5 +1,6 @@
 const express=require('express');
 const bodyParser=require('body-parser');
+const date=require(__dirname+'/date.js');
 var newItem="";
 var newItems=[];
 var workItems=[];
@@ -8,16 +9,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static('public')); // Telling the server to load public folder as a static resource.
 app.set('view engine','ejs');
 app.get("/",function(req,res){
-	var today=new Date(); // day is in no. format.
-	var day;
-	var work;
-	var options={
-		weekday:'long',
-		day:'numeric',
-		month:'long'
-	};
-	day=today.toLocaleDateString("en-US",options);	// To set today's day and date.
-	// See stackoverflow for more information on how to change the date info to string.
+	let day=date.getDate();
 	res.render('list',{listTitle:day,listItems:newItems})
 });	
 app.post("/",function(req,res){

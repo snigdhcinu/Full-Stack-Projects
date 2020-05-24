@@ -1,2 +1,2 @@
 # EJS
-projects using ejs
+project using ejs

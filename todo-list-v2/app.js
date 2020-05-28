@@ -54,13 +54,11 @@ app.get("/",function(req,res){
 app.post("/",function(req,res){
 	// "/" is the root route or home route.
 	let newItem=req.body.listItem;
-	if(req.body.list==='work'){
-		workItems.push(newItem);
-		res.redirect('/work');
-	}else{
-		newItems.push(newItem);
-		res.redirect('/');
-	}
+	const item=new Item({
+		name:newItem
+	});
+	item.save();
+	res.redirect('/');
 });
 app.get('/work',function(req,res){
 	res.render('list',{listTitle:'Work',listItems:workItems})

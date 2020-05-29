@@ -67,6 +67,19 @@ app.post('/work',function(req,res){
 	let newItem=req.body.listItem;
 	workItems.push(newItem);
 	res.redirect('/work')
+	
+});
+app.post('/delete',function(req,res){
+	const checkedItemId=req.body.checkbox;
+	// console.log(checkedItemId);
+	Item.findByIdAndRemove(checkedItemId,function(err){
+		if(err)
+			console.log("error is :- "+err)
+		else{
+			console.log("Item deleted Successfully !!")
+			res.redirect('/');
+		}
+	})
 });
 app.get('/aboutus',function(req,res){
 	res.render('aboutus.ejs')

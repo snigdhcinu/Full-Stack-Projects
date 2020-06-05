@@ -1,5 +1,5 @@
 exports.getDate=function(){
-var today=new Date(); // day is in no. format.
+var today=new Date(); // day is in no. format
 	var day;
 	var work;
 	var options={

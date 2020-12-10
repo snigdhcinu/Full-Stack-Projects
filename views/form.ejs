@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Personal Info :</title>
+	<style type="text/css" href='/css/form.css'></style>
+</head>
+<body>
+
+	<div id="form-container">
+		<form action="/form" method="post" enctype="multipart/form-data">
+			<input id="dp" type="file" name="dp" /><br>
+			<input type="text" name="name" id="name" placeholder="Enter Your name here"><br>
+			<input type="text" name="occ" id="occ" placeholder="Enter your occupation"><br>
+			<input type="text" name="add" id="add" placeholder="Enter your address"><br>
+			<input type="number" name="phno" id="phno" placeholder="Enter Your Phone number"><br>
+			
+			<input id="gender" type="text" name="gender" placeholder="Select your gender" list="gendr"><br>
+			<datalist id="gendr">
+				<option value="Male">
+				<option value="Female">
+				<option value="Prefer Not to say">
+			</datalist>
+
+			<input type="text" name="pref" id="pref" placeholder="Select your Sexual Preference" list="prefe"><br>
+			<datalist id="prefe">
+				<option value="Male">
+				<option value="Female">
+				<option value="Prefer Not to say">
+			</datalist>
+			
+			<button id="submit" type="submit">SUBMIT</button>
+			
+		</form>
+	</div>
+
+</body>
+</html>

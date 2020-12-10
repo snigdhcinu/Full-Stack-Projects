@@ -3,7 +3,7 @@ const ejs = require('ejs')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const multer  = require('multer')
-const upload = multer({ dest: 'uploads/' })
+const upload = multer({ dest: 'public/uploads/' })
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -20,7 +20,7 @@ mongoose.connect('mongodb://localhost:27017/profileDB', {useNewUrlParser:true,us
 // Profile model & schema
 
 const profileSchema = new mongoose.Schema({
-	dp:{ data: Buffer, contentType: String },
+	dp:{ data: String, contentType: String },
 	name:String,
 	occ:String,
 	add:String,
@@ -47,7 +47,40 @@ app.route('/form')
 	})
 
 	.post( upload.single('dp'),(req,res)=>{
-		console.log(req.file)
+		let name = req.body.name;
+		let add = req.body.add;
+		let phno = req.body.phno;
+		let occ = req.body.occ;
+		let gender = req.body.gender;
+		let pref = req.body.pref;
+
+		let user = new Profile({
+
+			dp:{ data: `upload/${req.file.filename}`, contentType: req.file.mimetype },
+			name:name,
+			occ:occ,
+			add:add,
+			phno:phno,
+			gender:gender,
+			pref:pref
+		})
+
+		console.log(user);
+		user.save();
+		res.redirect('/profile')
+	})
+
+app.route('/profile')
+	.get((req,res)=>{
+		Profile.find((err,docs)=>{
+			if(err){
+				res.send(err);
+			}	
+			else{
+				res.render('profile',{result:docs})
+			}
+		})
+		
 	})
 
 

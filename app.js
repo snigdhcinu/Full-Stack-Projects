@@ -26,7 +26,7 @@ const profileSchema = new mongoose.Schema({
 	add:String,
 	phno:Number,
 	gender:String,
-	pref:String
+	age:Number
 });
 
 const Profile = mongoose.model('Profile',profileSchema)
@@ -52,7 +52,7 @@ app.route('/form')
 		let phno = req.body.phno;
 		let occ = req.body.occ;
 		let gender = req.body.gender;
-		let pref = req.body.pref;
+		let age = req.body.age;
 
 		let user = new Profile({
 
@@ -62,7 +62,7 @@ app.route('/form')
 			add:add,
 			phno:phno,
 			gender:gender,
-			pref:pref
+			age:age
 		})
 
 		console.log(user);
@@ -77,10 +77,17 @@ app.route('/profile')
 				res.send(err);
 			}	
 			else{
+				// console.log(docs[0].name)
+				// console.log(docs)
 				res.render('profile',{result:docs})
 			}
 		})
 		
+	})
+
+app.route('/chat')
+	.get((req,res)=>{
+		res.send('This is the chat page')
 	})
 
 

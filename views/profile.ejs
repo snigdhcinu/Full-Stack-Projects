@@ -5,7 +5,25 @@
 		<style type="text/css" href='/css/profile.css'></style>
 	</head>
 	<body>
-		<img src= <%"/uploads/ result[0].dp.data "%> type='<%=result[0].dp.contentType%>'>
+
+		<div id="container">
+			<% if(result.length > 0) {%>
+				<%  for (let i = 0; i < result.length; i++) { %>
+					<div class="card">
+						<img class="userImage" src="" alt="userImage.png">
+						<h1 class="userName"> <%= result[i].name %> </h1>
+						<p class="occ"> <%= result[i].occ %> </p>
+						<p class="phno"> <%= result[i].phno %> </p>
+						<p class="add"> <%= result[i].add %> </p>
+						<p class="gender"> <%= result[i].gender %> </p>
+						<p class="age"> <%= result[i].age %> </p>
+						<a href="/chat"><button class="greetBtn">Say Hello to <%= result[i].name %> </button></a>
+					</div>
+				<% } %>
+			<% }else { %>
+				<h1 >Sorry No profile to show !!</h1>
+			<%}%>
+		</div>
 
 	</body>
 </html>

@@ -3,6 +3,7 @@ const ejs = require('ejs')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const multer  = require('multer')
+const path = require('path')
 const upload = multer({ dest: 'public/uploads/' })
 const app = express();
 
